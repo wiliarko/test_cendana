@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Test Cendana</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="map">Map</string>
+</resources>
