@@ -1,23 +1,20 @@
 package test.cendana.wiliarko.ui.detail
 
+import android.location.Location
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.mapbox.mapboxsdk.Mapbox
+import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapView
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
-import com.mapbox.mapboxsdk.maps.Style.OnStyleLoaded
 import kotlinx.android.synthetic.main.activity_detail.*
 import test.cendana.wiliarko.R
 import test.cendana.wiliarko.data.model.UserDBModel
 
-
 class DetailActivity : AppCompatActivity() {
-
-    private var mapView: MapView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,47 +32,53 @@ class DetailActivity : AppCompatActivity() {
         email.text = user.email
         address.text = user.street+" " +user.suite+" "+user.city+" "+user.zipcode
 
-        mapView?.onCreate(savedInstanceState)
-        mapView?.getMapAsync { map ->
+        mapview.onCreate(savedInstanceState)
+        mapview.getMapAsync { map ->
+            map.setStyle(Style.MAPBOX_STREETS) {
+
+            }
             map.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(LatLng(user.lat.toString().toDouble(), user.lng.toString().toDouble()), 12.0)
             )
+            map.addMarker(MarkerOptions()
+                .position(LatLng(user.lat.toString().toDouble(), user.lng.toString().toDouble()))
+                .title(user.name))
         }
 
     }
 
-    override fun onStart() {
+   override fun onStart() {
         super.onStart()
-        mapView?.onStart()
+       mapview.onStart()
     }
 
     override fun onResume() {
         super.onResume()
-        mapView?.onResume()
+        mapview.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        mapView?.onPause()
+        mapview.onPause()
     }
 
     override fun onStop() {
         super.onStop()
-        mapView?.onStop()
+        mapview.onStop()
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mapView?.onLowMemory()
+        mapview.onLowMemory()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mapView?.onDestroy()
+        mapview.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
-        mapView?.onSaveInstanceState(outState)
+        mapview.onSaveInstanceState(outState)
     }
 }
