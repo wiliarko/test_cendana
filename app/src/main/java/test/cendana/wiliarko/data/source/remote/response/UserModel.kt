@@ -1,7 +1,6 @@
-package test.cendana.wiliarko.data.model
+package test.cendana.wiliarko.data.source.remote.response
 
 import android.os.Parcelable
-import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 

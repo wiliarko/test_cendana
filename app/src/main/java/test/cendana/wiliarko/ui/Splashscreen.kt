@@ -30,7 +30,6 @@ class Splashscreen : AppCompatActivity() {
         return ViewModelProviders.of(activity, factory).get(SplashcreenViewmodel::class.java)
     }
 
-
     fun initData(){
         viewModel = obtainViewModel(this)
         viewModel.getUser().observe(this, Observer {

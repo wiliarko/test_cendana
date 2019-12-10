@@ -5,16 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import test.cendana.wiliarko.R
 import test.cendana.wiliarko.data.model.UserDBModel
 import test.cendana.wiliarko.ui.detail.DetailActivity
+import test.cendana.wiliarko.ui.viewmodel.ViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
     internal var dataList: MutableList<UserDBModel> = mutableListOf()
     internal lateinit var adapter: MainActivityAdapter
+
+    private lateinit var viewModel: MainActivityViewmodel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +35,16 @@ class MainActivity : AppCompatActivity() {
         initData()
     }
 
-    fun initData(){
-        val model = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainActivityViewmodel::class.java)
+    private fun obtainViewModel(activity: MainActivity): MainActivityViewmodel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProviders.of(activity, factory).get(MainActivityViewmodel::class.java)
+    }
 
-        model.getUser().observe(this, Observer {
+
+    fun initData(){
+        viewModel = obtainViewModel(this)
+
+        viewModel.getUser().observe(this, Observer {
             dataList.clear()
             dataList.addAll(it)
             adapter.notifyDataSetChanged()

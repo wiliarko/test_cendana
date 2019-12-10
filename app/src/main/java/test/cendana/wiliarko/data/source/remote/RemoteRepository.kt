@@ -6,8 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import test.cendana.wiliarko.data.model.UserModel
-import test.cendana.wiliarko.data.source.remote.response.UsersResponse
+import test.cendana.wiliarko.data.source.remote.response.UserModel
 
 const val TAG = "LogRemoteRepository"
 class RemoteRepository {
@@ -23,16 +22,16 @@ class RemoteRepository {
         val users: MutableLiveData<List<UserModel>> = MutableLiveData()
 
         apiClient.users().enqueue(
-            object : Callback<UsersResponse> {
-                override fun onFailure(call: Call<UsersResponse>, t: Throwable) {
+            object : Callback<List<UserModel>> {
+                override fun onFailure(call: Call<List<UserModel>>, t: Throwable) {
                     Log.d(TAG, t.localizedMessage)
                 }
 
                 override fun onResponse(
-                    call: Call<UsersResponse>,
-                    response: Response<UsersResponse>
+                    call: Call<List<UserModel>>,
+                    response: Response<List<UserModel>>
                 ) {
-                    response.body()?.let { users.postValue(it.results) }
+                    response.body()?.let { users.postValue(it) }
                 }
 
             }

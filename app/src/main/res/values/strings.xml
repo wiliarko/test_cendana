@@ -4,5 +4,7 @@
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="address">Address</string>
+    <string name="detail_user">Detail User</string>
     <string name="map">Map</string>
+    <string name="access_token">pk.eyJ1Ijoid2lsaWFya28iLCJhIjoiY2szdDh6dzdxMDBldjNrbnptMWMxNmNibiJ9.0iKQbH2AabYpL7rvHALaXA</string>
 </resources>

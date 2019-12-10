@@ -1,4 +1,4 @@
-package test.cendana.wiliarko.data.model
+package test.cendana.wiliarko.data.source.remote.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

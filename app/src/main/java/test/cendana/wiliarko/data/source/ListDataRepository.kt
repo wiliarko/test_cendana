@@ -2,7 +2,7 @@ package test.cendana.wiliarko.data.source
 
 import androidx.lifecycle.LiveData
 import test.cendana.wiliarko.data.model.UserDBModel
-import test.cendana.wiliarko.data.model.UserModel
+import test.cendana.wiliarko.data.source.remote.response.UserModel
 import test.cendana.wiliarko.data.source.local.LocalRepository
 import test.cendana.wiliarko.data.source.remote.RemoteRepository
 
