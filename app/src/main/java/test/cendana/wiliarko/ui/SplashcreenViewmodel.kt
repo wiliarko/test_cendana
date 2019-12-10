@@ -9,7 +9,6 @@ import test.cendana.wiliarko.data.source.ListDataRepository
 class SplashcreenViewmodel(private val listDataRepository: ListDataRepository): ViewModel() {
 
     fun getUser(): LiveData<List<UserModel>> {
-        println("masuk kah ?")
         return listDataRepository.getUsersRemote()
     }
 

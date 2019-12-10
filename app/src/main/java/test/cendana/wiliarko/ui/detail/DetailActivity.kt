@@ -37,11 +37,8 @@ class DetailActivity : AppCompatActivity() {
 
         mapView?.onCreate(savedInstanceState)
         mapView?.getMapAsync { map ->
-            map.setStyle(Style.OUTDOORS) { style ->
-
-            }
             map.moveCamera(
-                CameraUpdateFactory.newLatLngZoom(LatLng(-32.557013, -56.149056), 4.0)
+                CameraUpdateFactory.newLatLngZoom(LatLng(user.lat.toString().toDouble(), user.lng.toString().toDouble()), 12.0)
             )
         }
 

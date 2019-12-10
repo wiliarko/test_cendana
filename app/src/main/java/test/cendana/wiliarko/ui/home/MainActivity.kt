@@ -3,6 +3,7 @@ package test.cendana.wiliarko.ui.home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -49,5 +50,23 @@ class MainActivity : AppCompatActivity() {
             dataList.addAll(it)
             adapter.notifyDataSetChanged()
         })
+    }
+
+    override fun onBackPressed() {
+
+        val builder = AlertDialog.Builder(this@MainActivity)
+        builder.setTitle("Pertanyaan")
+        builder.setMessage("Yakin mau tutup aplikasinya ?")
+
+        builder.setPositiveButton("YES"){dialog, which ->
+            finish()
+        }
+
+        builder.setNeutralButton("Cancel"){_,_ ->
+
+        }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 }
